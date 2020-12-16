@@ -249,6 +249,9 @@ void Foam::convectiveOutletFvPatchField<Type>::updateCoeffs()
     // If the wave is incoming set the speed to 0.
     scalarField w(convectionSpeed());//, scalar(0)));
 
+    // Output convectionSpeed to stdout
+    Info<<"Outlet bondary convection speed: "<<w[0]<<" m/s"<<endl;
+
     // Calculate the field wave coefficient alpha (See notes)
     //  deltaCoeffs() is the reciprocal distance
     //    Between owner and neighbour cell centroids of an internal face
@@ -333,7 +336,6 @@ void Foam::convectiveOutletFvPatchField<Type>::updateCoeffs()
                 << exit(FatalError);
         }
     }
-    Info << "valueFraction:"<<w<<endl;
     mixedFvPatchField<Type>::updateCoeffs();
 }
 
